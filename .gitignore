@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+/reproduction-*/
+/inductive-transfer-*/
+/regular-readout-asymptotics/result/
+/unified-precision-experiment/result/

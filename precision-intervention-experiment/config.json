@@ -1,0 +1,106 @@
+{
+  "experiment_id": "precision-intervention-v1-20260907",
+  "block_seeds": [
+    17,
+    29,
+    43,
+    71,
+    101,
+    131,
+    173,
+    211
+  ],
+  "graphs_per_condition": 8,
+  "conditions": [
+    "source",
+    "lambda_low",
+    "lambda_high"
+  ],
+  "architectures": [
+    "mean",
+    "mean_degree"
+  ],
+  "random_replicates": 4,
+  "threads": 4,
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 202609071,
+  "primary_channel": "gaussian_1",
+  "margin_nats": 0.001,
+  "primary_quantiles": [
+    0.0125,
+    0.9875
+  ],
+  "target_pool": "precision_intervention_fresh_target",
+  "max_runtime_seconds": 3600,
+  "channels": [
+    {
+      "name": "native",
+      "kind": "native",
+      "layers": [
+        1
+      ]
+    },
+    {
+      "name": "float16",
+      "kind": "float16",
+      "layers": [
+        1
+      ]
+    },
+    {
+      "name": "bfloat16",
+      "kind": "bfloat16",
+      "layers": [
+        1
+      ]
+    },
+    {
+      "name": "gaussian_025",
+      "kind": "gaussian",
+      "scale": 0.25,
+      "layers": [
+        1
+      ]
+    },
+    {
+      "name": "gaussian_05",
+      "kind": "gaussian",
+      "scale": 0.5,
+      "layers": [
+        1
+      ]
+    },
+    {
+      "name": "gaussian_1",
+      "kind": "gaussian",
+      "scale": 1.0,
+      "layers": [
+        1
+      ]
+    },
+    {
+      "name": "uniform_1",
+      "kind": "uniform",
+      "scale": 1.0,
+      "layers": [
+        1
+      ]
+    },
+    {
+      "name": "float16_both",
+      "kind": "float16",
+      "layers": [
+        1,
+        2
+      ]
+    },
+    {
+      "name": "bfloat16_both",
+      "kind": "bfloat16",
+      "layers": [
+        1,
+        2
+      ]
+    }
+  ]
+}

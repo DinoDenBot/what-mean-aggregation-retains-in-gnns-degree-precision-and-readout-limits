@@ -1,0 +1,42 @@
+{
+  "files": {
+    "README.md": "f6d2ae55bf4008dee02edfe8cd5532c7417fa423e36ab51aa39b1cb208c6c0c2",
+    "SPEC.md": "ff72f8dfa3b981570fea55e9ef92642f75d877b6a52450aa9c97df0332c86c82",
+    "bundle/analyze.py": "45aa7ab520b11b9ad45d917ef15415ca0aca2c5dbe6a5f83884b04fe5997cd58",
+    "bundle/core.py": "2488f717f776572c22257e6c7faa087ebfc6bd5d315e8ebee5b636588390c705",
+    "bundle/intervention.py": "c331e5ff86216a292438fac07ad549e1ee783d424243307a3e981cf1f2ede671",
+    "bundle/models.py": "ea35675d25b3f891b7f903a1d62c91358e5e60e3f54f42c2ad04c99bc47429b5",
+    "bundle/run.py": "c38111f671948e48462ef0dc5f42515af53e3c60ac85e5db5dc95809641db5d3",
+    "bundle/test_intervention.py": "ea330a8d45d0b15309607de90ca7171dd48aa91c99eaf6b456b27478cbce90db",
+    "config.json": "d3dfd148094f8232f9ac99411390a054fad8c2234afc8a0a257cdbf4f29853e9",
+    "inputs/checkpoints/block-101-mean.pt": "57516a9570d94c1f75dddb3eece2d9d9622998cbd7a5f8626541121298611a00",
+    "inputs/checkpoints/block-101-mean_degree.pt": "19792fbef1360f7cea43ded3ec8c6d94c4b93ac8f17d44a650e38782cbe3414a",
+    "inputs/checkpoints/block-131-mean.pt": "d99f6988d2b35f611f60349a83771562b2f108efd3d96e65863c7e6b1315adf9",
+    "inputs/checkpoints/block-131-mean_degree.pt": "4a75f1c55fc4b05aa887e7a78aecbe11606b626d843b5123afaf30210218787c",
+    "inputs/checkpoints/block-17-mean.pt": "360485c414389564b42891decfdcc0ced7bd8b3d88be8596973133a11e47b0c3",
+    "inputs/checkpoints/block-17-mean_degree.pt": "ae0f2a3415b096245b173a8b15774d8cb8e205289b531125173e8a7282d029e9",
+    "inputs/checkpoints/block-173-mean.pt": "b32f23c33297a374f04a5a50f0aa8562fcf9322fd7bfc5a27b86189c42cefba0",
+    "inputs/checkpoints/block-173-mean_degree.pt": "59afeb4132b42d3545a64cbfca5ff7152744629d598610f6520c75e7472f3823",
+    "inputs/checkpoints/block-211-mean.pt": "e751bd7e5ac1dd429a42fef92c9f6457231e4a764cf5d4dcfc94504c428df026",
+    "inputs/checkpoints/block-211-mean_degree.pt": "192d3f69f7363e99f6871ba11d4c73aca863839b3a8ed177477ebfe6348bbd3e",
+    "inputs/checkpoints/block-29-mean.pt": "f7d5ee9ab79a78d1e4c1be68cf27265876f5a7c1931c48a6f4f102eea9c2f362",
+    "inputs/checkpoints/block-29-mean_degree.pt": "183c377c9fdf9cacf3ac926a627b89544a62b15d6a88e31f5aad7ad6586db7be",
+    "inputs/checkpoints/block-43-mean.pt": "9008339b65945954925d6655ff854caa7b5466498c3e1a9b74abdac07d789f0b",
+    "inputs/checkpoints/block-43-mean_degree.pt": "2d2635fb00f507d02757900a907122545bb870047f3e0b541b35d600d30c4018",
+    "inputs/checkpoints/block-71-mean.pt": "926394831adc64db07b78a94ea006025369b6e6a399bc4fa98ea55c64cb47519",
+    "inputs/checkpoints/block-71-mean_degree.pt": "d1ce0a32d674d6f520bc364cfe6f7eda9a9e1f353f0e318309772312295d1c6e",
+    "inputs/config.resolved.json": "6f023aef2f5763e7871fdbbff7dfa7f70bda8e0faf73f58834df2565bd614ef0",
+    "inputs/graph_metrics.csv": "be5fc4326c1bdc3261b853bacdf3705c62e8342726306828330e6350eff27cb1",
+    "inputs/model_inventory.csv": "807d13244a906ae9b43a5a3d3e4b37d16a5d1830313b29cd5fbb22fe3c2498c5",
+    "reproduce.sh": "3afb56971a7e05e38240e0d189a27bb8f290f18ddc10ad79e16e150ec5212d87"
+  },
+  "frozen_at_utc": "2026-09-07T20:50:14.121370+00:00",
+  "preflight": {
+    "smoke_analysis_completed": true,
+    "smoke_execution_valid": true,
+    "smoke_metrics_not_used_for_design": true,
+    "unit_tests": 5,
+    "unit_tests_passed": 5
+  },
+  "status": "frozen_before_new_intervention_targets"
+}

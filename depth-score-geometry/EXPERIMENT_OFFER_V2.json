@@ -1,0 +1,91 @@
+{
+  "experiment_id": "canonical-depth-leaf-location-v2",
+  "status": "frozen_awaiting_detached_public_timestamp",
+  "frozen_at_utc": "2026-09-05T12:21:05Z",
+  "lineage": "Designed after the typed-mixing v1 development diagnostic failed H2 because both directions collapsed. V2 is not a parameter retuning of v1: it tests the leaf-location direction appearing in Theorem 4, using a finite Bernoulli tree and binary leaf marks so canonical Fisher information is exactly enumerable.",
+  "decision": "Whether the fixed-depth recursive-mean theorem has a finite, canonical counterpart that retains leaf content substantially better than branching intensity through depths 2, 3, and 4.",
+  "hypotheses": {
+    "H1": "The exact finite-Bernoulli oracle score-sum and degree-aware score recursions have both generalized Fisher eigenvalues within 1e-10 of one at every tested depth.",
+    "H2": "For the headline quantized recursive-mean channel, canonical leaf-location efficiency minus canonical intensity efficiency exceeds 0.10 at every depth r=2,3,4.",
+    "H3": "The sign of the H2 gap is positive at both quantizer-resolution controls for every depth r=2,3,4."
+  },
+  "model": {
+    "candidate_children": 16,
+    "offspring": "Each internal vertex has 16 candidate children, each present independently with q(lambda)=lambda/16.",
+    "leaf_marks": "At depth zero, X is in {-1,+1} with P_theta(X=x)=(1+x*theta)/2.",
+    "parameters": ["lambda", "theta"],
+    "fiducial": {
+      "lambda": 8.0,
+      "theta": 0.2
+    },
+    "depths": [1, 2, 3, 4]
+  },
+  "channels": {
+    "quantized_recursive_mean": {
+      "base": "h_v^0=X_v at leaves",
+      "update": "h_v^r=Q_delta(mean_{u present child of v} h_u^{r-1}), with empty mean equal to zero",
+      "headline_delta": 0.015625,
+      "resolution_controls": [0.03125, 0.0078125],
+      "rounding": "nearest grid point with deterministic ties-to-even",
+      "range": [-1.0, 1.0]
+    },
+    "score_sum": "Exact finite-Bernoulli complete-score recursion at the fiducial environment.",
+    "score_mean_plus_degree": "Algebraically identical reconstruction using total present degree and the mean of per-present-child score messages."
+  },
+  "estimand": {
+    "primary": "Canonical representation Fisher information F_H=Var(E[S_complete|H]); no decoder class, nuisance regression, or empirical Fisher.",
+    "normalization": "Generalized eigenvalues of (F_H,F_O) and the physical lambda/theta directional efficiencies.",
+    "finite_alphabet_formula": "F_H=sum_h grad p(h) grad p(h)^T/p(h)."
+  },
+  "method": {
+    "probability_recursion": "Propagate the finite hidden-state probabilities and their lambda/theta derivatives by exact convolution over all 16 Bernoulli candidates, then push through the frozen quantized mean.",
+    "score_identity": "The propagated derivative grad p(h) equals E[S_complete*1{H=h}], yielding canonical F_H directly.",
+    "tail_approximation": "None; both branching and hidden alphabets are finite.",
+    "precision": "IEEE float64 plus a full 80-digit Decimal recomputation.",
+    "finite_difference_steps": {
+      "lambda": 1e-5,
+      "theta": 1e-6
+    },
+    "independent_checks": "Finite differences of the probability-only recursion, a tiny exhaustive-tree enumeration, independently coded complete-score second moments, eigendirection residuals, PSD contraction, and exact reciprocal-grid validation.",
+    "no_training": true,
+    "no_network": true
+  },
+  "validity_gates": {
+    "probability_mass_error_max": 1e-12,
+    "score_mean_max_abs": 1e-10,
+    "raw_fisher_recursion_relative_error_max": 1e-10,
+    "finite_difference_derivative_max_abs_error": 1e-6,
+    "finite_difference_fisher_relative_error_max": 1e-5,
+    "eigendirection_residual_max": 1e-9,
+    "eigendirection_normalization_max_abs_error": 1e-9,
+    "fisher_psd_min_eigenvalue": -1e-10,
+    "data_processing_max_eigenvalue": 1.0000000001,
+    "high_precision_matrix_max_abs_discrepancy": 1e-9
+  },
+  "scientific_success": "validity AND H1 AND H2 AND H3",
+  "falsification": {
+    "H1": "Either oracle score channel is farther than 1e-10 from unit generalized efficiency.",
+    "H2": "At any headline depth 2,3,4, leaf-location efficiency minus intensity efficiency is <=0.10.",
+    "H3": "Either resolution control has a nonpositive leaf-location-minus-intensity gap at any depth 2,3,4."
+  },
+  "reporting": {
+    "main_candidate": "Only the canonical depthwise intensity-versus-leaf-location separation if the full conjunction passes independent audit.",
+    "appendix_candidate": "Full matrices, generalized directions, resolution controls, and numerical certificates.",
+    "omit_from_manuscript": "The failed v1 typed-mixing diagnostic and all auxiliary outputs, except in artifact chronology if needed.",
+    "governance": "The current manuscript remains immutable. A passed, publicly timestamped, independently audited v2 result creates a new manuscript fork; otherwise no manuscript change."
+  },
+  "compute_offer": {
+    "recommended_target": "local",
+    "logical_cpus_max": 6,
+    "resident_memory_gib_max": 8,
+    "runtime_hours_max": 4,
+    "output_gib_max": 0.5,
+    "gpu_required": false,
+    "network_required": false
+  },
+  "readiness_blockers": [
+    "Independent audit of the post-audit THEORY.md snapshot.",
+    "Independent implementation audit of canonical_leaf_depth.py and its derivative/eigendirection certificates.",
+    "Immutable source archive and detached public timestamp before result-bearing execution."
+  ]
+}

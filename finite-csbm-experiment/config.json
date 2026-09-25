@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "experiment_id": "finite-csbm-one-hop-fisher-v1",
+  "preregistration_revision": 1,
+  "status": "preregistered_not_run",
+  "graph_sizes": [512, 2048],
+  "expected_degrees": [16, 64],
+  "rho0": 0.5,
+  "mu0": 0.75,
+  "root_label": 1,
+  "context_variance": 1.0,
+  "message_coordinates": ["constant", "neighbor_label", "context", "label_times_context"],
+  "architectures": [
+    {"name": "mean", "role": "confirmatory_normalized_loss"},
+    {"name": "sum", "role": "sufficient_positive_control"},
+    {"name": "mean_degree", "role": "sufficient_restoration_control"},
+    {"name": "gat", "role": "exploratory_normalized_attention"}
+  ],
+  "model": {
+    "hidden_width": 64,
+    "representation_dimension": 16,
+    "score_dimension": 3,
+    "attention_key_dimension": 16,
+    "optimizer": "adamw",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 512,
+    "maximum_steps": 600,
+    "validation_interval_steps": 25,
+    "early_stopping_patience_checks": 8,
+    "early_stopping_minimum_improvement": 0.00001,
+    "gradient_clip_norm": 5.0
+  },
+  "nuisance_regression": {
+    "hidden_width": 128,
+    "optimizer": "adamw",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 1024,
+    "maximum_steps": 400,
+    "validation_interval_steps": 25,
+    "early_stopping_patience_checks": 8,
+    "early_stopping_minimum_improvement": 0.00001,
+    "input_standardization": {
+      "enabled": true,
+      "fit_source": "nuisance_fit_pool_only",
+      "minimum_scale": 0.000001
+    }
+  },
+  "independent_pools_per_condition_seed": {
+    "architecture_train": 20000,
+    "architecture_validation": 5000,
+    "nuisance_fit": 16000,
+    "nuisance_validation": 4000,
+    "fisher_evaluation": 25000
+  },
+  "seeds": [17, 29, 43],
+  "bootstrap": {
+    "replicates": 1000,
+    "confidence_level": 0.95,
+    "method": "paired_percentile",
+    "unit": "independent_root_neighborhood",
+    "inference": "conditional_per_architecture_seed"
+  },
+  "determinism": {
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "tf32": false,
+    "training_dtype": "float32",
+    "score_and_estimator_accumulation_dtype": "float64",
+    "network_access": false
+  },
+  "primary_condition": {"graph_size": 512, "expected_degree": 64},
+  "validity_thresholds": {
+    "raw_score_covariance_operator_error_max": 0.04,
+    "analytic_sufficient_oracle_directional_error_max": 0.05,
+    "learned_sufficient_oracle_directional_error_max": 0.07,
+    "unprojected_minimum_eigenvalue_min": -0.06,
+    "estimated_data_processing_violation_eigenvalue_max": 0.06
+  },
+  "decision_thresholds": {
+    "mean_rate_upper_max": 0.20,
+    "mean_homophily_and_context_lower_min": 0.65,
+    "sufficient_control_all_directions_lower_min": 0.75,
+    "sufficient_control_rate_advantage_lower_min": 0.40,
+    "contradiction_mean_rate_lower_min": 0.50,
+    "contradiction_sufficient_control_rate_upper_max": 0.50,
+    "must_hold_for_every_seed": true,
+    "gat_role": "exploratory_no_threshold"
+  },
+  "artifact_limit_bytes": 134217728
+}
+

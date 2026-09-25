@@ -1,0 +1,295 @@
+{
+  "analysis": {
+    "accuracy_equivalence_margin": 0.002,
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20260905,
+    "context_models_confirmatory": false,
+    "little_log_loss_margin": 0.001,
+    "ordinary_interval_alpha": 0.05,
+    "primary_conditions": [
+      "lambda_low",
+      "lambda_high"
+    ],
+    "primary_contrast": "mean_minus_mean_degree_log_loss",
+    "primary_one_sided_alpha_per_test": 0.0125,
+    "secondary_log_loss_families": {
+      "feature_signal": [
+        "mu_low",
+        "mu_high"
+      ],
+      "homophily": [
+        "rho_low",
+        "rho_high"
+      ]
+    },
+    "secondary_two_sided_alpha_per_interval": 0.0125,
+    "shift_gain": "target_advantage_minus_source_advantage",
+    "shift_gain_margin": 0.0005,
+    "target_log_loss_advantage_margin": 0.001
+  },
+  "architectures": [
+    {
+      "hidden_width": 64,
+      "name": "mean",
+      "role": "confirmatory_normalized"
+    },
+    {
+      "hidden_width": 64,
+      "name": "mean_degree",
+      "role": "confirmatory_degree_restoration"
+    },
+    {
+      "hidden_width": 64,
+      "name": "sum",
+      "role": "context_cardinality_preserving"
+    },
+    {
+      "hidden_width": 24,
+      "name": "pna",
+      "role": "context_degree_statistics"
+    }
+  ],
+  "artifact_limit_bytes": 524288000,
+  "conditions": [
+    {
+      "condition": "source",
+      "family": "source",
+      "lambda": 24.0,
+      "mu": 0.35,
+      "rho": 0.6
+    },
+    {
+      "condition": "lambda_low",
+      "family": "degree",
+      "lambda": 12.0,
+      "mu": 0.35,
+      "rho": 0.6
+    },
+    {
+      "condition": "lambda_high",
+      "family": "degree",
+      "lambda": 48.0,
+      "mu": 0.35,
+      "rho": 0.6
+    },
+    {
+      "condition": "rho_low",
+      "family": "homophily",
+      "lambda": 24.0,
+      "mu": 0.35,
+      "rho": 0.3
+    },
+    {
+      "condition": "rho_high",
+      "family": "homophily",
+      "lambda": 24.0,
+      "mu": 0.35,
+      "rho": 0.8
+    },
+    {
+      "condition": "mu_low",
+      "family": "feature_signal",
+      "lambda": 24.0,
+      "mu": 0.2,
+      "rho": 0.6
+    },
+    {
+      "condition": "mu_high",
+      "family": "feature_signal",
+      "lambda": 24.0,
+      "mu": 0.5,
+      "rho": 0.6
+    },
+    {
+      "condition": "combined_l12_r03_m02",
+      "family": "combined",
+      "lambda": 12.0,
+      "mu": 0.2,
+      "rho": 0.3
+    },
+    {
+      "condition": "combined_l12_r03_m05",
+      "family": "combined",
+      "lambda": 12.0,
+      "mu": 0.5,
+      "rho": 0.3
+    },
+    {
+      "condition": "combined_l12_r08_m02",
+      "family": "combined",
+      "lambda": 12.0,
+      "mu": 0.2,
+      "rho": 0.8
+    },
+    {
+      "condition": "combined_l12_r08_m05",
+      "family": "combined",
+      "lambda": 12.0,
+      "mu": 0.5,
+      "rho": 0.8
+    },
+    {
+      "condition": "combined_l48_r03_m02",
+      "family": "combined",
+      "lambda": 48.0,
+      "mu": 0.2,
+      "rho": 0.3
+    },
+    {
+      "condition": "combined_l48_r03_m05",
+      "family": "combined",
+      "lambda": 48.0,
+      "mu": 0.5,
+      "rho": 0.3
+    },
+    {
+      "condition": "combined_l48_r08_m02",
+      "family": "combined",
+      "lambda": 48.0,
+      "mu": 0.2,
+      "rho": 0.8
+    },
+    {
+      "condition": "combined_l48_r08_m05",
+      "family": "combined",
+      "lambda": 48.0,
+      "mu": 0.5,
+      "rho": 0.8
+    }
+  ],
+  "determinism": {
+    "cudnn_benchmark": false,
+    "deterministic_algorithms": true,
+    "numeric_reproduction": "same_pinned_image_and_gpu_with_recorded_tolerance",
+    "numpy_seeded": true,
+    "seed_derivation": "sha256_namespaced_31_bit",
+    "tf32": false,
+    "torch_seeded": true
+  },
+  "evaluation": {
+    "degree_bins": [
+      [
+        0,
+        7
+      ],
+      [
+        8,
+        15
+      ],
+      [
+        16,
+        23
+      ],
+      [
+        24,
+        31
+      ],
+      [
+        32,
+        47
+      ],
+      [
+        48,
+        null
+      ]
+    ],
+    "minimum_nodes_per_graph_degree_bin": 50,
+    "primary_metric": "mean_node_log_loss_per_graph",
+    "resampling_unit": "target_graph_nested_within_training_block",
+    "secondary_metrics": [
+      "mean_node_accuracy_per_graph",
+      "mean_node_brier_per_graph"
+    ],
+    "weights_frozen": true
+  },
+  "execution_mode": "full",
+  "experiment_id": "inductive-csbm-transfer-v1",
+  "generator": {
+    "cross_class_probability": "lambda*(1-rho)/n",
+    "edge_sampler": "exact_bernoulli_geometric_skip",
+    "exact_balance": true,
+    "feature_dimension": 8,
+    "feature_law": "X=mu*Y*e1+Normal(0,I_8)",
+    "kind": "balanced_two_class_contextual_sbm",
+    "label_values": [
+      -1,
+      1
+    ],
+    "n": 4096,
+    "same_class_probability": "lambda*(1+rho)/(n-2)",
+    "self_loops": false,
+    "undirected": true
+  },
+  "model": {
+    "activation": "silu",
+    "classifier": "linear_to_one_logit",
+    "degree_transform": "source_train_standardized_log1p_degree",
+    "dropout": 0.1,
+    "layers": 2,
+    "pna_delta": "source_train_mean_log1p_degree",
+    "pna_scalers": [
+      "identity",
+      "log_amplification",
+      "log_attenuation"
+    ],
+    "pna_statistics": [
+      "mean",
+      "standard_deviation",
+      "maximum",
+      "minimum"
+    ]
+  },
+  "optimization": {
+    "batching": "all_six_source_graphs_as_one_disjoint_full_batch",
+    "early_stopping_minimum_improvement": 1e-05,
+    "early_stopping_patience": 30,
+    "gradient_clip_norm": 5.0,
+    "learning_rate": 0.003,
+    "loss": "binary_cross_entropy_with_logits",
+    "maximum_epochs": 300,
+    "minimum_epochs": 50,
+    "optimizer": "adamw",
+    "target_tuning": false,
+    "weight_decay": 0.0001
+  },
+  "protocol_status": "preregistered_not_run",
+  "schema_version": 1,
+  "source_environment": {
+    "condition": "source",
+    "family": "source",
+    "lambda": 24.0,
+    "mu": 0.35,
+    "rho": 0.6
+  },
+  "training_blocks": {
+    "common_graphs_across_architectures_within_block": true,
+    "independent_namespaces": [
+      "source_train",
+      "source_validation",
+      "target"
+    ],
+    "seeds": [
+      17,
+      29,
+      43,
+      71,
+      101,
+      131,
+      173,
+      211
+    ],
+    "source_train_graphs": 6,
+    "source_validation_graphs": 2,
+    "target_graphs_per_condition": 8
+  },
+  "validity": {
+    "all_metrics_finite_required": true,
+    "mean_degree_parameter_ratio_max": 1.02,
+    "pna_parameter_ratio_lower": 0.8,
+    "pna_parameter_ratio_upper": 1.2,
+    "realized_mean_degree_relative_error_max": 0.1,
+    "target_generation_after_global_freeze_required": true,
+    "target_graph_pairing_required": true,
+    "weights_hash_unchanged_required": true
+  }
+}
