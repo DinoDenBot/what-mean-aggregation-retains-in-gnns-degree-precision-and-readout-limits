@@ -5,4 +5,5 @@ __pycache__/
 /reproduction-*/
 /inductive-transfer-*/
 /regular-readout-asymptotics/result/
+/regular-readout-asymptotics/verification.json
 /unified-precision-experiment/result/
